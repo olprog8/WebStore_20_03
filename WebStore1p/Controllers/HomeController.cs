@@ -8,11 +8,11 @@ namespace WebStore1p.Controllers
         //public async Task<IActionResult> Index()
         public IActionResult Index()
         {
-            return Conflict("Home controller - action Index");
+            return Content("Home controller - action Index");
         }
         public IActionResult SomeAction()
         {
-            return Conflict("Home controller - action SomeAction");
+            return Content("Home controller - action SomeAction");
         }
 
     }
