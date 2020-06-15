@@ -25,13 +25,11 @@ namespace WebStore1p
 
             app.UseRouting();
 
-            var greetings = Configuration["CustomGreetings"];
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync(greetings);
+                    await context.Response.WriteAsync(Configuration["CustomGreetings"]);
                 });
             });
         }
