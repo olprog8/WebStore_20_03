@@ -23,6 +23,9 @@ namespace WebStore1p
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
