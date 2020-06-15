@@ -14,6 +14,8 @@ namespace WebStore1p
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddMvc();//2.1
+            services.AddControllersWithViews(); //Инфраструктура MVC
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -30,11 +32,17 @@ namespace WebStore1p
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/greetings", async context =>
                 {
                     await context.Response.WriteAsync(Configuration["CustomGreetings"]);
                 });
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    //pattern: "Home/Index/id"); //http://localhost:5000/Home/Index/id
+                    pattern: "{controller=Home}/{action=Index}/{id?}"); //http://localhost:5000/Home/Index/id
             });
+
         }
     }
 }
