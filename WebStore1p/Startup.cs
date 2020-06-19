@@ -14,9 +14,7 @@ namespace WebStore1p
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc();//2.1
-            services.AddControllersWithViews(); //Инфраструктура MVC
-        }
+              services.AddControllersWithViews();        }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
