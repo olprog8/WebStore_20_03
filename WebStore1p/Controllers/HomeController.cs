@@ -61,5 +61,23 @@ namespace WebStore1p.Controllers
                 return NotFound();
             return View(employee);
         }
+
+        public IActionResult Error404() => View();
+
+        public IActionResult Blog() => View();
+
+        public IActionResult BlogSingle() => View();
+
+        public IActionResult Cart() => View();
+
+        public IActionResult CheckOut() => View();
+
+        public IActionResult ContactUs() => View();
+
+        public IActionResult Login() => View();
+
+        public IActionResult Shop() => View();
+
+        public IActionResult ProductDetails() => View();
     }
 }
