@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebStore1p.Models
+﻿namespace WebStore1p.Models
 {
     public class Employee
     {
