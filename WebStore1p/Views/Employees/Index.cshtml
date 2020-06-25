@@ -5,38 +5,39 @@
     ViewBag.Title = "Сотрудники";
 }
 
-<h3>@ViewData["Title"]</h3>
-<hr />
+    <div class="container">
 
-<div class="container">
-    <table class="table table-bordered" id="employees-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-                <th>Возраст</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var employee in Model)
-            {
+        <h3>@ViewData["Title"]</h3>
+        <hr />
+
+        <table class="table table-bordered" id="employees-table">
+            <thead>
                 <tr>
-                    <td>@employee.Id</td>
-                    <td>@employee.SurName</td>
-                    <td>@employee.FirstName</td>
-                    <td>@employee.Patronymic</td>
-                    <td>@employee.Age</td>
-                    <td>
-                        <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
-                    </td>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Возраст</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var employee in Model)
+                {
+                    <tr>
+                        <td>@employee.Id</td>
+                        <td>@employee.SurName</td>
+                        <td>@employee.FirstName</td>
+                        <td>@employee.Patronymic</td>
+                        <td>@employee.Age</td>
+                        <td>
+                            <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 @section Styles{
     <style>
