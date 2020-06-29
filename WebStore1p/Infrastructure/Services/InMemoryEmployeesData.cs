@@ -10,7 +10,7 @@ namespace WebStore1p.Infrastructure.Services
     public class InMemoryEmployeesData: IEmployeesData
     {
         private readonly List<Employee> _Employees = TestData.Employees;
-        public IEnumerable<Employee> GetAll() => _Employees;;
+        public IEnumerable<Employee> GetAll() => _Employees;
 
         public Employee GetById(int id) => _Employees.FirstOrDefault(e => e.Id == id);
 
@@ -47,7 +47,7 @@ namespace WebStore1p.Infrastructure.Services
             db_employee.FirstName = Employee.FirstName;
             db_employee.Patronymic = Employee.Patronymic;
             db_employee.Age = Employee.Age;
-        };
+        }
 
         public bool Delete(int id) 
         {
