@@ -15,8 +15,10 @@ namespace WebStore1p
         public static void Main(string[] args) =>
             CreateHostBuilder(args)
             .Build()
-            .Run();
+            .Run(); //запуск хоста на прослушивание порта
 
+//Ќачало этот метод магическа€ штука переименовывать нельз€!
+//¬ классе Startup основные параметры нашего приложени€
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(builder =>
