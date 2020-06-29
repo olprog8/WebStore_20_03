@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebStore1p.Data;
 using WebStore1p.Infrastructure.Interfaces;
+using WebStore1p.Models;
 
 namespace WebStore1p.Controllers
 {
@@ -34,6 +35,22 @@ namespace WebStore1p.Controllers
                 return NotFound();
             return View(employee);
 
+        }
+
+        //ПШ редактирование реализуется в 2 этапа
+
+        public IActionResult Edit(int? Id)
+        {
+            if (Id is null) return View(new Employee());
+
+            if (Id < 0)
+                return BadRequest();
+
+            var employee = _EmployeesData.GetById((int)Id);
+            if (employee is null)
+                return NotFound();
+
+            return View(employee);
         }
     }
 }
