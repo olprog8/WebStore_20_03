@@ -9,6 +9,7 @@ using WebStore1p.Models;
 namespace WebStore1p.Controllers
 {
 
+    [Route("users")]
     public class EmployeesController : Controller
     {
 
@@ -42,8 +43,10 @@ namespace WebStore1p.Controllers
         };
 
 
+        [Route("Employees")]
         public IActionResult Index() => View(__Employees);
         
+        [Route("Employee/{Id}")]
         public IActionResult Details(int Id)
         {
             var employee = __Employees.FirstOrDefault(e => e.Id == Id);
