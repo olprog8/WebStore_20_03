@@ -52,5 +52,31 @@ namespace WebStore1p.Controllers
 
             return View(employee);
         }
+
+        //ПШ ответная часть тоже называется также (обычно) в данном случае Edit, но в качестве параметра указывается модель (или ViewModel)
+        //И указываем что данный метод будет реагировать исключительно на Post запросы
+
+        [HttpPost]
+        public IActionResult Edit(Employee Employee)
+        {
+            if (Employee is null)
+                throw new System.ArgumentNullException(nameof(Employee));
+
+            //ПШ Делаем проверку модели, если не соответствует отправляем пользователю обратно
+            if (!ModelState.IsValid)
+                return View(Employee);
+
+            var id = Employee.Id;
+            //ПШ если Id нулевой, то это новый сотрудник и мы его добавляем, иначе редактируем
+            if (id == 0)
+                _EmployeesData.Add(Employee);
+            else
+                _EmployeesData.Edit(id, Employee);
+
+            _EmployeesData.SaveChages();
+
+            return RedirectToAction("Index");
+
+        }
     }
 }

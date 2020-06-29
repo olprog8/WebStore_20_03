@@ -16,7 +16,7 @@
     @*{}*@
 
     @*можно создать через TagХелпер*@
-    @<form asp-action="Edit" method="post">
+    <form asp-action="Edit" method="post">
         @*asp-route-Id="@Model.Id"*@
 
         <div class="row">
@@ -35,7 +35,7 @@
                     <label asp-for="FirstName" class="control-label"></label>
                     <input asp-for="FirstName" class="form-control" />
                     @*ПШ span нужен чтобы вывести валидационную информацию об ошибках, которые могут возникнуть при вводе для конкретного элемента*@
-                    <span asp-validation-for="FirtsName"></span>
+                    <span asp-validation-for="FirstName"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Patronymic" class="control-label"></label>
