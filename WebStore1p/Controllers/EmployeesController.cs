@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WebStore1p.Data;
 using WebStore1p.Infrastructure.Interfaces;
 using WebStore1p.Models;
@@ -52,6 +54,27 @@ namespace WebStore1p.Controllers
 
             return View(employee);
         }
+
+        public IActionResult Create()
+        {
+            return View(new Employee());
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee Employee)
+        {
+            if (Employee is null)
+                throw new ArgumentNullException(nameof(Employee));
+
+            if (!ModelState.IsValid)
+                return View(Employee);
+
+            _EmployeesData.Add(Employee);
+            _EmployeesData.SaveChages();
+
+            return RedirectToAction("Index");
+        }
+
 
         //ПШ ответная часть тоже называется также (обычно) в данном случае Edit, но в качестве параметра указывается модель (или ViewModel)
         //И указываем что данный метод будет реагировать исключительно на Post запросы
