@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Employee>
+﻿@model IEnumerable<EmployeeViewModel>
 
 @{
     //ViewData["Title"] = "Сотрудники";
@@ -23,25 +23,29 @@
                 <th>Возраст</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var employee in Model)
             {
-                <tr>
-                    <td>@employee.Id</td>
-                    <td>@employee.SurName</td>
-                    <td>@employee.FirstName</td>
-                    <td>@employee.Patronymic</td>
-                    <td>@employee.Age</td>
-                    <td>
-                        <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
-                    </td>
-                    <td>
-                        <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Редактировать</a>
-                    </td>
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.SecondName</td>
+                <td>@employee.Name</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Age</td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
+                </td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Редактировать</a>
+                </td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id">Удалить</a>
+                </td>
 
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
