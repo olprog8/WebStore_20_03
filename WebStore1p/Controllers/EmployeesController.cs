@@ -88,6 +88,9 @@ namespace WebStore1p.Controllers
             if (Employee is null)
                 throw new ArgumentNullException(nameof(Employee));
 
+            if(Employee.Name == "123" && Employee.SecondName=="QWE")
+                ModelState.AddModelError(string.Empty, "Странное имя и фамилия ...")
+
             if (!ModelState.IsValid)
                 return View(Employee);
 

@@ -45,6 +45,8 @@ namespace WebStore1p
             app.UseStaticFiles();
             app.UseDefaultFiles();
 
+            //ПШ описание валидации модели с помощью флюент интерфейса
+            
             app.UseRouting();
 
             app.UseWelcomePage("/welcome");
