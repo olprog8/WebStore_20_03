@@ -17,5 +17,12 @@ namespace WebStore1p.Infrastructure.Interfaces
         /// <summary>Получить все бренды</summary>
         /// <returns>Перечисление брендов каталога</returns>
         IEnumerable<Brand> GetBrands();
+
+        //ПШ нам нужны не все товары, а только отдельные по конкретной секции и бренду, 
+        //для этого введем понятие фильтра товаров, поэтому фильтром будет отдельная сущность
+/// <summary>Товары из каталога</summary>
+/// <param name="Filter">Критерий поиска/фильтрации</param>
+/// <returns>Искомые товары из каталога товаров</returns>
+        IEnumerable<Product> GetProducts(ProductFilter Filter = null);
     }
 }
