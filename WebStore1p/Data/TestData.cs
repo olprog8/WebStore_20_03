@@ -10,7 +10,7 @@ namespace WebStore1p.Data
 {
     public class TestData
     {
-        public static List<Employee> Employees { get; }  = new List<Employee>()
+        public static List<Employee> Employees { get; } = new List<Employee>()
         {
             new Employee
             {
@@ -83,6 +83,22 @@ namespace WebStore1p.Data
             new Section{ Id = 28, Name = "Одежда", Order = 7},
             new Section{ Id = 29, Name = "Сумки", Order = 8},
             new Section{ Id = 30, Name = "Обувь", Order = 9}
+        };
+
+        public static IEnumerable<Product> Products { get; } = new[]
+        {
+            new Product { Id = 1, Name = "Белое платье", Price = 1025, ImageUrl = "Product1.jpg", Order = 0, SectionId = 2, BrandId = 1 },
+            new Product { Id = 2, Name = "Розовое платье", Price = 1025, ImageUrl = "Product2.jpg", Order = 1, SectionId = 2, BrandId = 1 },
+            new Product { Id = 3, Name = "Красное платье", Price = 1025, ImageUrl = "Product3.jpg", Order = 2, SectionId = 2, BrandId = 1 },
+            new Product { Id = 4, Name = "Джинсы", Price = 1025, ImageUrl = "Product4.jpg", Order = 3, SectionId = 2, BrandId = 1 },
+            new Product { Id = 5, Name = "Лёгкая майка", Price = 1025, ImageUrl = "Product5.jpg", Order = 4, SectionId = 2, BrandId = 2 },
+            new Product { Id = 6, Name = "Лёгкое голубое поло", Price = 1025, ImageUrl = "Product6.jpg", Order = 5, SectionId = 2, BrandId = 1 },
+            new Product { Id = 7, Name = "Платье белое", Price = 1025, ImageUrl = "Product7.jpg", Order = 6, SectionId = 2, BrandId = 1 },
+            new Product { Id = 8, Name = "Костюм кролика", Price = 1025, ImageUrl = "Product8.jpg", Order = 7, SectionId = 25, BrandId = 1 },
+            new Product { Id = 9, Name = "Красное китайское платье", Price = 1025, ImageUrl = "Product9.jpg", Order = 8, SectionId = 25, BrandId = 1 },
+            new Product { Id = 10, Name = "Женские джинсы", Price = 1025, ImageUrl = "Product10.jpg", Order = 9, SectionId = 25, BrandId = 3 },
+            new Product { Id = 11, Name = "Джинсы женские", Price = 1025, ImageUrl = "Product11.jpg", Order = 10, SectionId = 25, BrandId = 3 },
+            new Product { Id = 12, Name = "Летний костюм", Price = 1025, ImageUrl = "Product12.jpg", Order = 11, SectionId = 25, BrandId = 3 }
         };
     }
 }
