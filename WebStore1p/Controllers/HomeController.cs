@@ -65,9 +65,5 @@ namespace WebStore1p.Controllers
         public IActionResult ContactUs() => View();
 
         public IActionResult Login() => View();
-
-        public IActionResult Shop() => View();
-
-        public IActionResult ProductDetails() => View();
     }
 }
