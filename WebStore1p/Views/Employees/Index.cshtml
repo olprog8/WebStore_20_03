@@ -1,50 +1,62 @@
-﻿@model IEnumerable<Employee>
+﻿@model IEnumerable<EmployeeViewModel>
 
 @{
     //ViewData["Title"] = "Сотрудники";
     ViewBag.Title = "Сотрудники";
 }
 
-    <div class="container">
+<div class="container">
 
-        <h3>@ViewData["Title"]</h3>
-        <hr />
+    <h3>@ViewData["Title"]</h3>
+    <hr />
 
-        <table class="table table-bordered" id="employees-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Фамилия</th>
-                    <th>Имя</th>
-                    <th>Отчество</th>
-                    <th>Возраст</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var employee in Model)
-                {
-                    <tr>
-                        <td>@employee.Id</td>
-                        <td>@employee.SurName</td>
-                        <td>@employee.FirstName</td>
-                        <td>@employee.Patronymic</td>
-                        <td>@employee.Age</td>
-                        <td>
-                            <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    <a asp-action="Edit" class="btn btn-success">Создать через Edit</a>
+    <a asp-action="Create" class="btn btn-success">Создать через Create</a>
+
+    <table class="table table-bordered" id="employees-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Возраст</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.SecondName</td>
+                <td>@employee.Name</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Age</td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
+                </td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Редактировать</a>
+                </td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id">Удалить</a>
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @section Styles{
-    <style>
-        #employees-table {
-            background: red
-        }
-    </style>
+    @*<style>
+            #employees-table {
+                background: red
+            }
+        </style>*@
 }
 
 @section Scripts{

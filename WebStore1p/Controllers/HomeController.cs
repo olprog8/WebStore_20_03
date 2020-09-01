@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,6 +45,8 @@ namespace WebStore1p.Controllers
             //return View("OtherViewName");
             return View();
         }
+
+        public IActionResult Throw(string id) => throw new ApplicationException(id);
         public IActionResult SomeAction()
         {
             return View();
