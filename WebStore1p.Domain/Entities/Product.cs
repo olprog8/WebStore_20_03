@@ -25,11 +25,12 @@ namespace WebStore1p.Domain.Entities
         //Если внешний ключ опционален то int с ?
         public int? BrandId { get; set; }
 
+        
         [ForeignKey(nameof(BrandId))]
         public virtual Brand Brand { get; set; }
         public string ImageUrl { get; set; } //адрес картинки
-
-        [Column(TypeName = "decimal(18,2)")]
+        
+        [Column(TypeName = "decimal(18,2)")] //Точность цены в БАЗЕ ДАННЫХ
         public decimal Price { get; set; }
 
         //[NotMapped]

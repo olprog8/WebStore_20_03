@@ -22,7 +22,7 @@ namespace WebStore1p.Domain.Entities
 
         //Внешний ключ по свойству ParentId
         [ForeignKey(nameof(ParentId))]
-        //Связь один к одному
+        //Связь один к одному!
         public virtual Section ParentSection { get; set; }
         //Связь один ко многим
         public virtual ICollection<Product> Products { get; set; }
