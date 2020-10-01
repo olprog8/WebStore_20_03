@@ -39,15 +39,15 @@ namespace WebStore1p.Data
         };
 
         // ПШ Массив брендов
-        public static IEnumerable<Brand> Brands { get; } = new[]
+        public static IEnumerable<_Brand> Brands { get; } = new[]
         {
-            new Brand{ Id=1, Name="Acne", Order = 0 },
-            new Brand{ Id=2, Name="Grune Erde", Order = 1 },
-            new Brand{ Id=3, Name="Albiro", Order = 2 },
-            new Brand{ Id=4, Name="Ronhill", Order = 3 },
-            new Brand{ Id=5, Name="Oddmolly", Order = 4 },
-            new Brand{ Id=6, Name="Boudstijn", Order = 5 },
-            new Brand{ Id=7, Name="Rosch creative culture", Order = 6 },
+            new _Brand{ Id=1, Name="Acne", Order = 0 },
+            new _Brand{ Id=2, Name="Grune Erde", Order = 1 },
+            new _Brand{ Id=3, Name="Albiro", Order = 2 },
+            new _Brand{ Id=4, Name="Ronhill", Order = 3 },
+            new _Brand{ Id=5, Name="Oddmolly", Order = 4 },
+            new _Brand{ Id=6, Name="Boudstijn", Order = 5 },
+            new _Brand{ Id=7, Name="Rosch creative culture", Order = 6 },
         };
 
         // ПШ Ордер - свойство для упорядочивания коллекции

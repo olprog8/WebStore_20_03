@@ -13,7 +13,7 @@ namespace WebStore1p.Infrastructure.Services
         public IEnumerable<Section> GetSection() => TestData.Sections;
         
 
-        public IEnumerable<Brand> GetBrands() => TestData.Brands;
+        public IEnumerable<_Brand> GetBrands() => TestData.Brands;
 
 
         public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
