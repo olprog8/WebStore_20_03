@@ -7,7 +7,7 @@ using WebStore1p.Domain.Entities;
 
 namespace WebStore.DAL.Context
 {
-    public class WebStoreDB: DbContext
+    public class WebStoreDB : DbContext
     {
 
         public DbSet<Product> Products { get; set; }
@@ -16,6 +16,6 @@ namespace WebStore.DAL.Context
 
         public DbSet<Brand> Brands { get; set; }
 
-        public WebStoreDB(DbContextOptions<WebStoreDB> Options) : base(Options){}
+        public WebStoreDB(DbContextOptions<WebStoreDB> Options) : base(Options) { }
     }
 }

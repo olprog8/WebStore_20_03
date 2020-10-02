@@ -27,7 +27,7 @@ namespace WebStore1p.Domain.Entities
 
         
         [ForeignKey(nameof(BrandId))]
-        public virtual _Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
         public string ImageUrl { get; set; } //адрес картинки
         
         [Column(TypeName = "decimal(18,2)")] //Точность цены в БАЗЕ ДАННЫХ
