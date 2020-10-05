@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 using WebStore1p.Infrastructure.Interfaces;
 using WebStore1p.Infrastructure.Services;
+using WebStore1p.Infrastructure.Services.InSQL;
 
 using Microsoft.EntityFrameworkCore;
 //Что за жесть!!!
@@ -43,7 +44,8 @@ namespace WebStore1p
             //ПШ а значит хранит таблицу и модификации наших сотрудников
 
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
-            services.AddSingleton<IProductData, InMemoryProductData>();
+            //services.AddSingleton<IProductData, InMemoryProductData>();
+            services.AddScoped<IProductData, SQLProductData>();
         }
 
         //ПШ в этом методе мы можем запросить все сервисы с которыми имеет дело наше приложение, в дальнейшем мы добавим инициализатор БД

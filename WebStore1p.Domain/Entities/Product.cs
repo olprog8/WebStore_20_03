@@ -33,7 +33,7 @@ namespace WebStore1p.Domain.Entities
         [Column(TypeName = "decimal(18,2)")] //Точность цены в БАЗЕ ДАННЫХ
         public decimal Price { get; set; }
 
-        public string Description { get; set; }
+        //public string Description { get; set; }
 
         //[NotMapped]
         //public int NotMappedProperty { get; set; }
