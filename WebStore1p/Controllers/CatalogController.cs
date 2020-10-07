@@ -8,6 +8,8 @@ using WebStore1p.Domain.Entities.Base;
 using WebStore1p.Infrastructure.Interfaces;
 using WebStore1p.ViewModels;
 
+using WebStore1p.Infrastructure.Mapping;
+
 namespace WebStore1p.Controllers
 {
     public class CatalogController : Controller
@@ -40,14 +42,7 @@ namespace WebStore1p.Controllers
                 SectionId = SectionId,
                 BrandId = BrandId,
                 //ПШ получаем перечисление внутри каталога товаров
-                Products = products.Select(p => new ProductViewModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Order = p.Order,
-                    Price = p.Price,
-                    ImageUrl = p.ImageUrl
-                }).OrderBy(p => p.Order)
+                Products = products.Select(ProductMapping.ToView).OrderBy(p => p.Order)
             });
         }
 
