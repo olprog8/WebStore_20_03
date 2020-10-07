@@ -4,8 +4,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using WebStore1p.Infrastructure.Interfaces;
 using WebStore1p.Infrastructure.Services;
+using WebStore1p.Infrastructure.Services.InSQL;
+
+using Microsoft.EntityFrameworkCore;
+//Что за жесть!!!
+using WebStore.DAL.Context;
+
+using WebStore1p.Data;
+
 
 namespace WebStore1p
 {
@@ -18,6 +27,12 @@ namespace WebStore1p
         //параметр с коллекцией сервисов
         public void ConfigureServices(IServiceCollection services)
         {
+            //БД ПШ настройка инициализации БД
+            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+            //БД настройка инициализатора БД
+            services.AddTransient<WebStoreDBInitializer>();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             //ПШ есть 3 возможных варианта регистрации сервисов 
@@ -29,14 +44,18 @@ namespace WebStore1p
             //ПШ а значит хранит таблицу и модификации наших сотрудников
 
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
-            services.AddSingleton<IProductData, InMemoryProductData>();
+            //services.AddSingleton<IProductData, InMemoryProductData>();
+            services.AddScoped<IProductData, SQLProductData>();
         }
 
         //ПШ в этом методе мы можем запросить все сервисы с которыми имеет дело наше приложение, в дальнейшем мы добавим инициализатор БД
         //ПШ конфигуриться конвейер, куда можно добавлять промежуточное ПО
         //ПШ для объекта app запускаются методы расширения, которые мы можем сами писать
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
         {
+            //5 ПШ инициализация БД
+            db.Initialize();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
