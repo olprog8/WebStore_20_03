@@ -5,9 +5,12 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WebStore1p.Domain.Entities;
 
+using WebStore1p.Domain.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace WebStore.DAL.Context
 {
-    public class WebStoreDB : DbContext
+    public class WebStoreDB : IdentityDbContext<User,Role,string>
     {
 
         public DbSet<Product> Products { get; set; }
