@@ -63,7 +63,8 @@ namespace WebStore1p
             {
                 opt.Cookie.Name = "WebStore";
                 opt.Cookie.HttpOnly = true;
-                opt.Cookie.Expiration = TimeSpan.FromDays(10);
+                //opt.Cookie.Expiration = TimeSpan.FromDays(10); - уже неподдерживается в 3.1
+                opt.ExpireTimeSpan = TimeSpan.FromDays(10);
 
                 //L6 Identity Пути по которым система будет перенаправлять неавторизованных пользователей на контроллер Account
                 opt.LoginPath = "/Account/Login";
