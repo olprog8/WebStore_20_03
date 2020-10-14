@@ -55,8 +55,44 @@ namespace WebStore1p.Controllers
         }
         #endregion
 
-        public IActionResult Login() => View(new LoginViewModel());
+        #region Вход пользователя в систему
+        //ПШ L6 2:08 Метод Get информацию ReturnUrl мы сохраняем в модели
+        public IActionResult Login(string ReturnUrl) => View(new LoginViewModel { ReturnUrl = ReturnUrl});
 
-        public IActionResult Logout() => RedirectToAction("Index", "Home");
+        //ПШ L6 2:08 ответный асинхронный метод будет работать с LoginView моделью
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel Model)
+        {
+            if (!ModelState.IsValid) return View(Model);
+
+            var login_result = await _SignInManager.PasswordSignInAsync(
+                Model.UserName,
+                Model.Password,
+                Model.RememberMe,
+                false //Не хотим блокировать пользователя если он накосячил со вводом пароля 10 раз
+                );
+
+
+            if (login_result.Succeeded)
+            {
+                //ПШ L6 проверяем, что сайт локальный, т.к. бывают хакерские атаки с подсовыванием хитрого имени URL, иначе, перенаправляем на нашу страницу
+                if (Url.IsLocalUrl(Model.ReturnUrl))
+                    return RedirectToAction(Model.ReturnUrl);
+                return RedirectToAction("Index", "Home");
+            }
+
+            //ПШ L6 2:12 При ошибке выводим сообщения
+            ModelState.AddModelError(string.Empty, "Неверное имя пользователя, или пароль");
+
+            //ПШ L6 возвращаем модель
+            return View(Model);
+
+        }
+        #endregion
+        public async Task<IActionResult> Logout() {
+
+            await _SignInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
+        }
     }
 }
