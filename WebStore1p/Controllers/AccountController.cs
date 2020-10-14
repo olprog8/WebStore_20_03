@@ -56,5 +56,7 @@ namespace WebStore1p.Controllers
         #endregion
 
         public IActionResult Login() => View(new LoginViewModel());
+
+        public IActionResult Logout() => RedirectToAction("Index", "Home");
     }
 }
