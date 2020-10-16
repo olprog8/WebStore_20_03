@@ -109,12 +109,13 @@ namespace WebStore1p
             app.UseStaticFiles();
             app.UseDefaultFiles();
 
-            //L6 добавили Identity промежуточное ПО
-            app.UseAuthentication();
-
             //ПШ описание валидации модели с помощью флюент интерфейса
             
             app.UseRouting();
+
+            //L6 добавили Identity промежуточное ПО
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseWelcomePage("/welcome");
 

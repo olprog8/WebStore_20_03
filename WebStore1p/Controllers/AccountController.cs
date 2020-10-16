@@ -42,6 +42,8 @@ namespace WebStore1p.Controllers
             var register_result = await _UserManager.CreateAsync(user, Model.Password);
             if (register_result.Succeeded)
             {
+                await _UserManager.AddToRoleAsync(user, Role.User);
+
                 await _SignInManager.SignInAsync(user, false);
 
                 //ПШ L6 перебрасываем на главный контроллер

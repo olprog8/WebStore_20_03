@@ -10,5 +10,8 @@ namespace WebStore1p.Domain.Identity
     {
         //ПШ сразу определим константу
         public const string Administrator = "Administrators";
+
+        //ПШ L7 определим константу ролей пользователя
+        public const string User = "Users"; 
     }
 }

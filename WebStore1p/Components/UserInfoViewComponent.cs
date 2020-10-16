@@ -14,4 +14,11 @@ namespace WebStore1p.Components
             ? View("UserInfo")
             : View();
     }
+
+    //public IViewComponentResult Invoke() => User.Identity.IsAuthenticated
+    // ? User.IsInRole(Role.Administrator)
+    // ? View("AdminInfo")
+    // : View("UserInfo")
+    // : View();
+
 }

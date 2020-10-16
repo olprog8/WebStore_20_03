@@ -11,7 +11,7 @@ namespace WebStore1p.Domain.Identity
     {
 
         //ПШ сразу определим константы
-        public const string Administrator = "Administrators";
-        public const string DefaultPassword = "AdminPassword";
+        public const string Administrator = "Administrator";
+        public const string AdminDefaultPassword = "AdminPassword";
     }
 }
