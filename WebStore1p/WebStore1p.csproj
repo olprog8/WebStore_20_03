@@ -16,11 +16,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
-  
-  <ItemGroup>
-    <Folder Include="Views\Catalog\Partial\" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\WebStore1p.DAL\WebStore1p.DAL.csproj" />
     <ProjectReference Include="..\WebStore1p.Domain\WebStore1p.Domain.csproj" />

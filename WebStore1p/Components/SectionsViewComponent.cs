@@ -9,10 +9,10 @@ using WebStore1p.ViewModels;
 namespace WebStore1p.Components
 {
     //[ViewComponent(Name = "Sections")]
-    public class SectionViewComponent : ViewComponent
+    public class SectionsViewComponent : ViewComponent
     {
         private readonly IProductData _ProductData;
-        public SectionViewComponent(IProductData ProductData) { _ProductData = ProductData; }
+        public SectionsViewComponent(IProductData ProductData) { _ProductData = ProductData; }
         //Возвращаем в представление секции, т.е. представление будет работать с перечислением SectionViewModel
         public IViewComponentResult Invoke() => View(GetSections());
        

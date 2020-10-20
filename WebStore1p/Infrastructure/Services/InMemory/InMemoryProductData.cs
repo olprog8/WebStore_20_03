@@ -11,7 +11,7 @@ namespace WebStore1p.Infrastructure.Services
     {
 
         public IEnumerable<Section> GetSection() => TestData.Sections;
-        
+
 
         public IEnumerable<Brand> GetBrands() => TestData.Brands;
 
@@ -29,5 +29,8 @@ namespace WebStore1p.Infrastructure.Services
             return query;
 
         }
+
+        public Product GetProductById(int id) => TestData.Products.FirstOrDefault(p => p.Id == id);
+        
     }
 }
