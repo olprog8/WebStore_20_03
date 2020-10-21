@@ -58,8 +58,6 @@ namespace WebStore1p.Controllers
 
         public IActionResult BlogSingle() => View();
 
-        public IActionResult Cart() => View();
-
         public IActionResult CheckOut() => View();
 
         public IActionResult ContactUs() => View();

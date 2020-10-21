@@ -21,8 +21,4 @@
     <ProjectReference Include="..\WebStore1p.Domain\WebStore1p.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Cart\" />
-  </ItemGroup>
-
 </Project>
