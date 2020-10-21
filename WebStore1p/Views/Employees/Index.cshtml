@@ -8,10 +8,15 @@
 <div class="container">
 
     <h3>@ViewData["Title"]</h3>
-    <hr />
+ 
 
-    <a asp-action="Edit" class="btn btn-success">Создать через Edit</a>
+    @if(User.IsInRole(WebStore1p.Domain.Identity.Role.Administrator))
+                            {
+    <a asp - action = "Edit" class="btn btn-success">Создать через Edit</a>
     <a asp-action="Create" class="btn btn-success">Создать через Create</a>
+    }
+
+    <hr />
 
     <table class="table table-bordered" id="employees-table">
         <thead>
@@ -22,13 +27,16 @@
                 <th>Отчество</th>
                 <th>Возраст</th>
                 <th></th>
-                <th></th>
-                <th></th>
-            </tr>
+                @if (User.IsInRole(WebStore1p.Domain.Identity.Role.Administrator))
+                {
+                    <th></th>
+                    <th></th>
+                }
+                </tr>
         </thead>
         <tbody>
             @foreach (var employee in Model)
-            {
+    {
             <tr>
                 <td>@employee.Id</td>
                 <td>@employee.SecondName</td>
@@ -38,14 +46,17 @@
                 <td>
                     <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">Карточка</a>
                 </td>
-                <td>
-                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Редактировать</a>
-                </td>
-                <td>
-                    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id">Удалить</a>
-                </td>
+                @if (User.IsInRole(WebStore1p.Domain.Identity.Role.Administrator))
+                {
 
-            </tr>
+                    <td>
+                        <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Редактировать</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id">Удалить</a>
+                    </td>
+                }
+                </tr>
             }
         </tbody>
     </table>

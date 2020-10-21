@@ -9,10 +9,15 @@ using WebStore1p.ViewModels;
 
 using WebStore1p.Infrastructure.Mapping;
 
+using Microsoft.AspNetCore.Authorization;
+
+using WebStore1p.Domain.Identity;
+
 namespace WebStore1p.Controllers
 {
 
     //[Route("users")]
+    [Authorize]
     public class EmployeesController : Controller
     {
         //ПШ Стандартный сценарий(3й урок на 1.32мин)
@@ -43,7 +48,7 @@ namespace WebStore1p.Controllers
         }
 
         //ПШ редактирование реализуется в 2 этапа
-
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Edit(int? Id)
         {
             if (Id is null) return View(new EmployeeViewModel());
@@ -58,12 +63,14 @@ namespace WebStore1p.Controllers
             return View(employee.ToView());
         }
 
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Create()
         {
             return View(new EmployeeViewModel());
         }
 
-        [HttpPost]
+        [Authorize(Roles = Role.Administrator)]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(EmployeeViewModel Employee)
         {
             if (Employee is null)
@@ -85,7 +92,7 @@ namespace WebStore1p.Controllers
         //ПШ ответная часть тоже называется также (обычно) в данном случае Edit, но в качестве параметра указывается модель (или ViewModel)
         //И указываем что данный метод будет реагировать исключительно на Post запросы
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(EmployeeViewModel Employee)
         {
             if (Employee is null)
@@ -108,7 +115,7 @@ namespace WebStore1p.Controllers
 
         }
 
-
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Delete(int Id)
         {
             if (Id <= 0) return BadRequest();
@@ -123,6 +130,7 @@ namespace WebStore1p.Controllers
             return View(employee.ToView());
         }
 
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult DeleteConfirmed(int Id)
         {
             _EmployeesData.Delete(Id);

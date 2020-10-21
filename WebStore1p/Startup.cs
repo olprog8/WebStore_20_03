@@ -15,6 +15,14 @@ using WebStore.DAL.Context;
 
 using WebStore1p.Data;
 
+using Microsoft.AspNetCore.Identity;
+
+using WebStore1p.Domain.Identity;
+
+using WebStore1p.Infrastructure.Services.InCookies;
+
+using System;
+
 
 namespace WebStore1p
 {
@@ -29,7 +37,45 @@ namespace WebStore1p
         {
             //БД ПШ настройка инициализации БД
             services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
+            //L6 Identity Регистрация сервиса Пользователей и Ролей
+            // если быстро то services.AddIdentity<IdentityUser, IdentityRole>();, либо собственные, как ниже
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<WebStoreDB>() //Где хранить данные Identity, но в приложении мб более одного контекста БД, иногда бываает
+                .AddDefaultTokenProviders(); //Регистрируем провайдеров сервисов
+
+            services.Configure<IdentityOptions>(opt =>
+            {
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredUniqueChars = 3;
+
+                //opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxABCD...1234567890";
+                opt.User.RequireUniqueEmail = false;
+
+                opt.Lockout.AllowedForNewUsers = true;
+                opt.Lockout.MaxFailedAccessAttempts = 10;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            });
+
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "WebStore";
+                opt.Cookie.HttpOnly = true;
+                //opt.Cookie.Expiration = TimeSpan.FromDays(10); - уже неподдерживается в 3.1
+                opt.ExpireTimeSpan = TimeSpan.FromDays(10);
+
+                //L6 Identity Пути по которым система будет перенаправлять неавторизованных пользователей на контроллер Account
+                opt.LoginPath = "/Account/Login";
+                opt.LogoutPath = "/Account/Logout";
+                opt.AccessDeniedPath = "/Account/AccessDenied";
+
+                opt.SlidingExpiration = true; //L6 ПШ Параметр который заставит систему автоматически подменять идентификатор сессии пользователя, как он авторизовался
+            });
+
             //БД настройка инициализатора БД
             services.AddTransient<WebStoreDBInitializer>();
 
@@ -46,6 +92,8 @@ namespace WebStore1p
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SQLProductData>();
+
+            services.AddScoped<ICartService, CookiesCartService>();
         }
 
         //ПШ в этом методе мы можем запросить все сервисы с которыми имеет дело наше приложение, в дальнейшем мы добавим инициализатор БД
@@ -68,6 +116,10 @@ namespace WebStore1p
             //ПШ описание валидации модели с помощью флюент интерфейса
             
             app.UseRouting();
+
+            //L6 добавили Identity промежуточное ПО
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseWelcomePage("/welcome");
 
