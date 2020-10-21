@@ -9,5 +9,8 @@ namespace WebStore1p.Domain.Entities
         public int? SectionId { get; set; }
         public int? BrandId { get; set; }
 
+        //ПШ L7 Добавим свойство Идентификаторы
+        public List<int> Ids { get; set; }
+
     }
 }

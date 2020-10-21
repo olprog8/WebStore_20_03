@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Identity;
 
 using WebStore1p.Domain.Identity;
 
+using WebStore1p.Infrastructure.Services.InCookies;
+
 using System;
 
 
@@ -90,6 +92,8 @@ namespace WebStore1p
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SQLProductData>();
+
+            services.AddScoped<ICartService, CookiesCartService>();
         }
 
         //ПШ в этом методе мы можем запросить все сервисы с которыми имеет дело наше приложение, в дальнейшем мы добавим инициализатор БД

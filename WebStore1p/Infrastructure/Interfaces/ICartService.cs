@@ -7,7 +7,7 @@ using WebStore1p.ViewModels;
 
 namespace WebStore1p.Infrastructure.Interfaces
 {
-    interface ICartService
+    public interface ICartService
     {
         void AddToCart(int id);
         void DecrementFromCart(int id);

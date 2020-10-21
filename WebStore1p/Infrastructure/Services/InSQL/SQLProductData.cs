@@ -32,6 +32,10 @@ namespace WebStore1p.Infrastructure.Services.InSQL
             if (Filter?.SectionId != null)
                 query = query.Where(product => product.SectionId == Filter.SectionId);
 
+            //ПШ L7 2.32 Давайте доработаем логику фильтра в SQLProductData
+            if (Filter?.Ids?.Count > 0)
+                query = query.Where(product => Filter.Ids.Contains(product.Id));
+
             return query.AsEnumerable();
         }
 
