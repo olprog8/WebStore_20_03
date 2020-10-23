@@ -142,18 +142,22 @@ namespace WebStore1p.Infrastructure.Services.InCookies
         public CartViewModel TransformFromCart()
         {
             //###
-            var products = _ProductData.GetProducts(new ProductFilter
+            var cart_items = Cart.Items;
+            var products = _ProductData
+            .GetProducts(new ProductFilter
             {
                 Ids = Cart.Items.Select(item => item.ProductId).ToList()
-            });
-
-            var product_view_models = products.ToView();
-
+            })
+            .ToView()
+            .ToDictionary(p => p.Id);//ПШ L8 28 Ключем словаря будет идентификатор
+            
             return new CartViewModel
             {
                 //ПШ L7 2:30 Воспользуемся LINQ
-                Items = Cart.Items.ToDictionary(
-                    item => product_view_models.First(p => p.Id == item.ProductId),
+                Items = cart_items
+                    .Where(item => products.ContainsKey(item.ProductId)) //ПШ L8 Мы отбрасываем все элементы Корзины, которые отсуствуют в нашем словаре товаров
+                    .ToDictionary(
+                    item => products[item.ProductId], //ПШ L8 эту строчку тоже переписываем
                     item => item.Quantity
                     )
             };
