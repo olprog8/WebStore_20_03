@@ -134,6 +134,13 @@ namespace WebStore1p
                     name: "default",
                     //pattern: "Home/Index/id"); //http://localhost:5000/Home/Index/id
                     pattern: "{controller=Home}/{action=Index}/{id?}"); //http://localhost:5000/Home/Index/id
+
+                //ПШ L8 36 вставляем и модифицируем из ScffoldingReadMe.txt
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
             });
 
         }
