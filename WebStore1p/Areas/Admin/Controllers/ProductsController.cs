@@ -8,12 +8,15 @@ using Microsoft.AspNetCore.Authorization;
 
 using WebStore1p.Domain.Identity;
 
+
 namespace WebStore1p.Areas.Admin.Controllers
 {
     [Area("Admin"), Authorize(Roles = Role.Administrator)]
-    public class HomeController : Controller
+    public class ProductsController : Controller
     {
-        public IActionResult Index() => View();
-     
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
