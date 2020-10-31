@@ -18,6 +18,6 @@ namespace WebStore1p.Infrastructure.Interfaces
 
         Order GetOrderById(int id);
 
-        Order GreateOrder(string UserName, CartViewModel Cart, OrderViewModel Order);
+        Task<Order> GreateOrderAsync(string UserName, CartViewModel Cart, OrderViewModel Order);
     }
 }

@@ -94,6 +94,8 @@ namespace WebStore1p
             services.AddScoped<IProductData, SQLProductData>();
 
             services.AddScoped<ICartService, CookiesCartService>();
+
+            services.AddScoped<IOrderService, SQLOrderService>();
         }
 
         //ПШ в этом методе мы можем запросить все сервисы с которыми имеет дело наше приложение, в дальнейшем мы добавим инициализатор БД

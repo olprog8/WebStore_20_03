@@ -17,6 +17,8 @@ namespace WebStore1p.Domain.Entities.Orders
         [Required]
         public virtual User User { get; set; }
 
+        public string Address { get; set; }
+
         public string Phone { get; set; }
 
         public DateTime Date { get; set; }
