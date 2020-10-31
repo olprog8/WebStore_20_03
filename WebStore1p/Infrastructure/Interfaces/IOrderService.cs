@@ -6,7 +6,7 @@ using WebStore1p.Models;
 
 using WebStore1p.Domain.Entities.Orders;
 
-using WebStore1p.ViewModels
+using WebStore1p.ViewModels;
 
 using WebStore1p.ViewModels.Orders;
 

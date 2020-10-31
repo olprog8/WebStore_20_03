@@ -41,7 +41,7 @@ namespace WebStore1p.Areas.Admin.Controllers
                 return NotFound();
 
             return View(product);
-        };
+        }
 
         [HttpPost, ValidateAntiForgeryToken, ActionName(nameof(Delete))]
         public IActionResult DeleteConfirm(int id) => RedirectToAction(nameof(Index));
