@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 using WebStore1p.Infrastructure.Interfaces;
 
+using WebStore1p.ViewModels.Orders;
+
+using WebStore1p.ViewModels;
+
 namespace WebStore1p.Controllers
 {
 
@@ -17,7 +21,13 @@ namespace WebStore1p.Controllers
         public CartController(ICartService CartService) => _CartService = CartService;
 
         //ПШ L7 Для Details На представлении вызовем преобразование во ViewModel
-        public IActionResult Details() => View(_CartService.TransformFromCart());
+        //public IActionResult Details() => View(_CartService.TransformFromCart());
+
+        //ПШ L8 После добавления OrderController внесем изменение в Details
+        public IActionResult Details() => View(new CartOrderViewModel
+        { CartViewModel = _CartService.TransformFromCart(),
+          OrderViewModel = new OrderViewModel()
+        });
 
         public IActionResult AddToCart(int id)
         {
@@ -40,6 +50,33 @@ namespace WebStore1p.Controllers
         {
             _CartService.RemoveAll();
             return RedirectToAction(nameof(Details));
+        }
+
+        public async Task<IActionResult> CheckOut(OrderViewModel Model, [FromServices] IOrderService OrderService)
+        {
+            //ПШ L8 2:02 Если модель невалидна, отправляем обратно пользователю Представление корзины, и текущую модель заказа, чтобы он продолжил её радостно редактировать
+            if (!ModelState.IsValid)
+                return View(nameof(Details), new CartOrderViewModel
+                {
+                    CartViewModel = _CartService.TransformFromCart(),
+                    OrderViewModel = Model
+                });
+
+            //ПШ L8 2:03 Формируем заказ в Асинхронном виде
+            var order = await OrderService.GreateOrderAsync(User.Identity.Name,
+                                                            _CartService.TransformFromCart(),
+                                                            Model);
+
+            _CartService.RemoveAll();
+
+            return RedirectToAction(nameof(OrderConfirmed), new { id = order.Id});
+        }
+
+        public IActionResult OrderConfirmed(int id)
+        {
+            ViewBag.OrderId = id;
+
+            return View();
         }
 
     }
