@@ -7,7 +7,9 @@
         <li><a href="#"><i class="fa fa-star"></i> Желания</a></li>
         @*<li><a asp-controller="Home" asp-action="CheckOut"><i class="fa fa-crosshairs"></i> Заказ</a></li>*@
         <li><a asp-controller="Cart" asp-action="Details"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-        <li><a asp-controller="Account" asp-action="Profile"><i class="fa fa-user"></i> @User.Identity.Name</a></li>
+        @*ПШ L8 2:40 заменим после разработки профиля*@
+        @*<li><a asp-controller="Account" asp-action="Profile"><i class="fa fa-user"></i> @User.Identity.Name</a></li>*@
+        <li><a asp-controller="UserProfile" asp-action="Index"><i class="fa fa-user"></i> @User.Identity.Name</a></li>
         <li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-lock"></i> Выход</a></li>
     </ul>
 </div>
